@@ -13,6 +13,9 @@
                 n = x;
             }
         }
+        //第2引数があれば、Printを実行
+        var option_print = args.Length > 1;
+
         //異なる2元間の関係をi<jをa_i,j=1,i<>jをa_i,j=0,i>jをa_i,j=-1
         short[][] a = new short[n - 1][];
         for (int i = 0; i < n - 1; i++)
@@ -27,15 +30,30 @@
         var allNum = 0;
         var count = 0;
 
-        do {
-            if (IsPoset(a))
+        if (option_print)
+        {
+            do
             {
-                //Print(a);
-                //Console.WriteLine();
-                count++;
-            }
-            allNum++;
-        } while (Next(a));
+                if (IsPoset(a))
+                {
+                    Print(a);
+                    Console.WriteLine();
+                    count++;
+                }
+                allNum++;
+            } while (Next(a));
+        }
+        else
+        {
+            do
+            {
+                if (IsPoset(a))
+                {
+                    count++;
+                }
+                allNum++;
+            } while (Next(a));
+        }
         Console.WriteLine($"Number of posets of {n} elements :\t{count}");
         Console.WriteLine($"Number of three types of relation of {n} elements (3^({n}*{n - 1}/2)):\t{allNum}");
     }
