@@ -13,6 +13,10 @@ a_x,xは同じ元なのでこの関係のどれでもないが、表さないで
 すべての2元の関係の-1,0,1パターンを生成して、推移律を満たさないものがあるので取り除けば半順序集合を表したものと考えることができる。  
 変数となる成分はn(n-1)/2 あるので、全パターンは3^(n(n-1)/2)通りあり、このうち**推移律**を満たすものだけ列挙／数え上げる。
 
+推移律を満たすことは
+|a_i,j-a_i,k-a_j,k|≤1
+を満たすことに置き換えられることが分かったのでチェックを最初より簡単なものにした。(24/6/1 7:00)
+
 The On-Line Encyclopedia of Integer Sequences (OEIS)  
 https://oeis.org/A001035  
 A001035		Number of partially ordered sets ("posets") with n labeled elements (or labeled acyclic transitive digraphs).  
@@ -32,10 +36,11 @@ Number of three types of relation of 6 elements (3^(6*5/2)):    14348907
 Number of posets of 7 elements :        6129859
 Number of three types of relation of 7 elements (3^(7*6/2)):    1870418611
 ```
-Printのところコメントアウトを外すと、具体的に表示して列挙する。
+コマンドラインで第2引数に何か入れると、具体的に表示して列挙する。
 n=3 についての例
 
 ```
+> .\CountPosets2405.exe 3 x
                 -1      -1
                         -1
 
