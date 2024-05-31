@@ -95,17 +95,10 @@
         return false;
     }
 
-    //値が一致するときtrue
-    public static short Match(short[][] a,int i,int j,short expect) {
-        return expect == GetValue(a,i,j) ? (short)1 : (short)0;
-    }
-
     //推移律を満たすときtrue
     public static bool Transitive(short[][] a, int i, int j, int k) {
-        return 1==(
-              Match(a, i, j, -1) * (1 - Match(a, i, k, 0)  * Match(a, j, k, -1) - Match(a, i, k, 1)  * Match(a, j, k, -1) - Match(a, i, k, 1) * Match(a, j, k, 0 )) 
-            + Match(a, i, j, 0)  * (1 - Match(a, i, k, -1) * Match(a, j, k, 1 ) - Match(a, i, k, 1)  * Match(a, j, k, -1)) 
-            + Match(a, i, j, 1)  * (1 - Match(a, i, k, -1) * Match(a, j, k, 0 ) - Match(a, i, k, -1) * Match(a, j, k, 1 ) - Match(a, i, k, 0) * Match(a, j, k, 1)));
+        var x = GetValue(a, i, j) - GetValue(a, i, k) + GetValue(a, j, k);
+        return -1 <= x && x <= 1;
     }
 
     //3元の間の推移律をすべて満たすときtrue
